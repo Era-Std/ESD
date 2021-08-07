@@ -30,8 +30,8 @@
  ```
  This section of Bmap (visual state) declares type checking and specifies the type for each Key. If nothing happens, this section of Bmap will return
  ```
- key <string> value
- mykey <int> 114514
+ key   <string> value
+ mykey <int>    114514
  ```
  Two Key And Value are parsed out and the specified type is declared
  Convert to JSON
