@@ -1,59 +1,59 @@
-# ESD 001 - Bmap
+# ESD 001-Bmap
 
-## 什么是Bmap
-Bmap是一个在部分场景下高性能,支持类型声明的Key Value结构信息交换格式
+ ## What is Bmap
+ Bmap is a high-performance key value structure information exchange format that supports type declarations in some scenarios
 
-## Bmap如何工作
-Bmap声明了一组特殊的占位符来分割数据,一般以二进制的状态出现,Bmap可以储存在任何支持二进制的位置例如文件,Bmap文件可以使用任意文件后缀名我们建议将其后缀名为 .bmap
+ ## How Bmap works
+ Bmap declares a set of special placeholders to divide the data. It usually appears in a binary state. Bmap can be stored in any binary-supported location such as a file. Bmap files can use any file suffix. We recommend that their suffix be .bmap.
 
-### Bmap占位符
-ESD-001 的官方介绍中, Bmap默认占位符为
-Bmap所有的占位符均为16进制,而Bmap为二进制
-```
-‌\x00 --- Key And Value的分隔符
-‌\x01 --- Body中每组Kv的分隔符
-‌\x03 --- Key Body And Type的分隔符
-‌\x09 --- Header And Body的分隔符
-```
-### Bmap Header
-ESD-001 的官方介绍中,Bmap Header与Body类似,但只允许存放有关于Body的信息
-例如:我想声明这个Bmap开启类型检查那么我需要在Header添加TypeCheck
-TypeCheck\x00true
-或者我需要传输一段视频流,但视频流文件体积过大无法一次性传输,那么我可以在Header添加Flag
-Flag\x001
+ ### Bmap placeholder
+ In the official introduction of ESD-001, the default placeholder for Bmap is
+ All placeholders in Bmap are hexadecimal, while Bmap is binary
+ ```
+ ‌\X00 --- Key And Value separator
+ ‌\X01 --- Separator of each group of Kv in Body
+ ‌\X03 --- Separator of Key Body And Type
+ ‌\X09 --- Header And Body separator
+ ```
+ ### Bmap Header
+ In the official introduction of ESD-001, Bmap Header is similar to Body, but only information about Body is allowed to be stored
+ For example: I want to declare this Bmap to enable type checking, then I need to add TypeCheck to the Header
+ TypeCheck\x00true
+ Or I need to transmit a video stream, but the video stream file is too large to be transmitted at one time, then I can add Flag to the Header
+ Flag\x001
 
-## Bmap类型检查
-当你在Header中添加TypeCheck并设置其值为true后解析器返回的map中就会设置其的类型为声明的类型
-例如:
-```
-TypeCheck\x00true\x09key\x032\x00value\x01mykey\x031\x00114514
-```
-这段Bmap(可视状态)声明了类型检查,且为每个Key指定了类型,如不出意外那么这段Bmap会返回
-```
-key      <string>   value
-mykey    <int>      114514
-```
-解析出来了两个Key And Value 并且声明了指定的类型
-转为JSON
-```json
-{
-	"Header": {
-		"TypeCheck": true
-	},
-	"Body": {
-		"key": "value",
-		"mykey": 114514
-	}
-}
-```
-在Bmap中每个类型都会有属于自己的数字代码
-## Bmap的类型代码
-```
-‌1 - Integer
-‌2 - String
-‌3 - Boolean
-‌4 - Float
-‌5 - Byte
-```
-## 为什么使用Bmap
-Bmap相比于其他信息交换格式例如 XML, JSON有着得天独厚的优势,没有XML的复杂性,也没有JSON符号的冗余性,Bmap属于Kv类型这点与大部分信息交换格式相同
+ ## Bmap type check
+ When you add TypeCheck to the Header and set its value to true, the map returned by the parser will set its type to the declared type
+ E.g:
+ ```
+ TypeCheck\x00true\x09key\x032\x00value\x01mykey\x031\x00114514
+ ```
+ This section of Bmap (visual state) declares type checking and specifies the type for each Key. If nothing happens, this section of Bmap will return
+ ```
+ key <string> value
+ mykey <int> 114514
+ ```
+ Two Key And Value are parsed out and the specified type is declared
+ Convert to JSON
+ ```json
+ {
+ "Header": {
+ "TypeCheck": true
+ },
+ "Body": {
+ "key": "value",
+ "mykey": 114514
+ }
+ }
+ ```
+ Each type in Bmap has its own digital code
+ ## Type code of Bmap
+ ```
+ ‌1-Integer
+ ‌2-String
+ ‌3-Boolean
+ ‌4-Float
+ ‌5-Byte
+ ```
+ ## Why use Bmap
+ Compared with other information exchange formats such as XML, JSON has unique advantages. There is no complexity of XML and no redundancy of JSON symbols. Bmap belongs to the Kv type. This is the same as most information exchange formats.
