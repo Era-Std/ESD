@@ -10,10 +10,10 @@
  In the official introduction of ESD-001, the default placeholder for Bmap is
  All placeholders in Bmap are hexadecimal, while Bmap is binary
  ```
- ‌\X00 --- Key And Value separator
- ‌\X01 --- Separator of each group of Kv in Body
- ‌\X03 --- Separator of Key Body And Type
- ‌\X09 --- Header And Body separator
+ ‌\x00 --- Key And Value separator
+ ‌\x01 --- Separator of each group of Kv in Body
+ ‌\x03 --- Separator of Key Body And Type
+ ‌\x09 --- Header And Body separator
  ```
  ### Bmap Header
  In the official introduction of ESD-001, Bmap Header is similar to Body, but only information about Body is allowed to be stored
@@ -37,14 +37,14 @@
  Convert to JSON
  ```json
  {
- "Header": {
- "TypeCheck": true
- },
- "Body": {
- "key": "value",
- "mykey": 114514
- }
- }
+	"Header": {
+		"TypeCheck": true
+	},
+	"Body": {
+		"key": "value",
+		"mykey": 114514
+	}
+}
  ```
  Each type in Bmap has its own digital code
  ## Type code of Bmap
