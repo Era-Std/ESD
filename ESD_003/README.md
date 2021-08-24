@@ -29,7 +29,7 @@ _Modern code style_
 The function name should represent the function of this function, it is not allowed to include the package name, use the big/small hump name  
 Good example: `CreateADog` `removeACat`  
 
-### Structure  
+### Struct  
 _Look, this stuff is like writing poetry_  
 The naming of the structure should represent the role of this structure, use big/small hump naming, and do not conflict with _package name/variable name/function name/file name_ in the project  
 Good example:  
