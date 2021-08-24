@@ -1,5 +1,7 @@
 # ESD 003-代码规范(Golang)  
 
+<a href="./README.md">English</a>
+
 ## 什么是代码规范  
 代码规范能让一个项目的代码更加容易的阅读...  
 
