@@ -1,5 +1,7 @@
 # ESD 003-Code Specification (Golang)  
 
+<a href="./zh_README.md">简体中文</a>
+
 ## What is a code specification  
 Code specifications make the code of a project easier to read...  
 
