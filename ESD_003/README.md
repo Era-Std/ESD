@@ -6,7 +6,7 @@ Code specifications make the code of a project easier to read...
 ### File Naming  
 _Although it is not too restrictive, a simple naming convention is still needed_  
 _Snake name:_ `package name_function name`::for example: `foo_bar`  
-_Hump naming: _ `Function name` (big hump):: For example: `FooBar`  
+_Hump naming:_ `Function name` (big hump):: For example: `FooBar`  
 
 ### Constant name  
 _Old code style_  
